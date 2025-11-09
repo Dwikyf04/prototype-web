@@ -8,27 +8,31 @@
       href="{{ url_for('static', filename='css/style.css') }}"
     />
   </head>
+
   <body>
+    <!-- HEADER -->
     <header>
       <div class="navbar">
         <h1>CV. Sejahtera</h1>
         <ul>
-          <li><a href="{{ url_for('home') }}">Beranda</a></li>
-          <li><a href="{{ url_for('order') }}">Pemesanan</a></li>
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#pemesanan">Pemesanan</a></li>
         </ul>
       </div>
     </header>
 
-    <section class="hero">
+    <!-- HERO SECTION -->
+    <section id="beranda" class="hero">
       <h2>Pengadaan Barang Elektronik & Sekolah</h2>
       <p>Kami melayani pengadaan untuk seluruh sekolah di Indonesia.</p>
-      <a href="{{ url_for('order') }}" class="btn">Pesan Sekarang</a>
+      <a href="#pemesanan" class="btn">Pesan Sekarang</a>
     </section>
 
+    <!-- PRODUK SECTION -->
     <section class="products">
       <div class="product-card">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/2296/2296317.png"
+          src="{{ url_for('static', filename='images/laptop.jpg') }}"
           alt="Laptop"
         />
         <h3>Laptop</h3>
@@ -37,7 +41,7 @@
 
       <div class="product-card">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/3004/3004565.png"
+          src="{{ url_for('static', filename='images/kursi.png') }}"
           alt="Kursi"
         />
         <h3>Kursi Sekolah</h3>
@@ -46,7 +50,7 @@
 
       <div class="product-card">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/4727/4727225.png"
+          src="{{ url_for('static', filename='images/proyektor.png') }}"
           alt="Proyektor"
         />
         <h3>Proyektor</h3>
@@ -54,8 +58,74 @@
       </div>
     </section>
 
+    <!-- FORM PEMESANAN -->
+    <section id="pemesanan">
+      <h2 style="text-align: center; color: #003366">Form Pemesanan</h2>
+      <form id="orderForm">
+        <label>Nama Sekolah</label>
+        <input name="school_name" required />
+
+        <label>Nama Kontak Person</label>
+        <input name="contact_person" required />
+
+        <label>Email</label>
+        <input name="email" type="email" required />
+
+        <label>Telp</label>
+        <input name="phone" />
+
+        <label>Produk</label>
+        <input name="product" required />
+
+        <label>Harga per item (angka, tanpa titik)</label>
+        <input name="price" type="number" step="1" required />
+
+        <label>Jumlah</label>
+        <input name="quantity" type="number" min="1" value="1" required />
+
+        <label>Keterangan / Catatan</label>
+        <textarea name="notes" rows="3"></textarea>
+
+        <label>Upload Bukti Pembayaran (gambar)</label>
+        <input name="payment_proof" type="file" accept="image/*" required />
+
+        <button type="submit">Kirim Pemesanan</button>
+      </form>
+    </section>
+
+    <!-- POPUP -->
+    <div class="popup" id="popup">
+      <div class="popup-content">
+        <h3>Pemesanan Berhasil!</h3>
+        <p>Terima kasih! Pesanan Anda telah dikirim.</p>
+        <button id="closePopup">Tutup</button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
     <footer>
       <p>CV. Sejahtera | Jl. Diponegoro 22, Surabaya | Telp: 082140717178</p>
     </footer>
+
+    <!-- SCRIPT -->
+    <script>
+      const form = document.getElementById("orderForm");
+      const popup = document.getElementById("popup");
+      const closePopup = document.getElementById("closePopup");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        popup.style.display = "flex";
+        form.reset();
+      });
+
+      closePopup.addEventListener("click", function () {
+        popup.style.display = "none";
+      });
+
+      window.addEventListener("click", function (e) {
+        if (e.target === popup) popup.style.display = "none";
+      });
+    </script>
   </body>
 </html>
