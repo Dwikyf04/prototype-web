@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: cv-sejahtera
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+databases:
+  - name: cv-sejahtera-db
+    plan: free
