@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% block content %}
+<h2 class="text-2xl font-semibold text-blue-700 mb-4">Form Pemesanan</h2>
+<form
+  action="{{ url_for('order') }}"
+  method="post"
+  enctype="multipart/form-data"
+  class="max-w-lg bg-white p-6 rounded shadow mx-auto"
+>
+  <label class="block mb-1">Nama Sekolah</label>
+  <input name="school_name" required class="w-full border p-2 mb-3 rounded" />
+
+  <label class="block mb-1">Nama Kontak Person</label>
+  <input
+    name="contact_person"
+    required
+    class="w-full border p-2 mb-3 rounded"
+  />
+
+  <label class="block mb-1">Email</label>
+  <input
+    name="email"
+    type="email"
+    required
+    class="w-full border p-2 mb-3 rounded"
+  />
+
+  <label class="block mb-1">Telp</label>
+  <input name="phone" class="w-full border p-2 mb-3 rounded" />
+
+  <label class="block mb-1">Produk</label>
+  <input
+    name="product"
+    value="{{ product_name }}"
+    required
+    class="w-full border p-2 mb-3 rounded"
+  />
+
+  <label class="block mb-1">Harga per item (angka, tanpa titik)</label>
+  <input
+    name="price"
+    type="number"
+    step="1"
+    value="{{ price }}"
+    required
+    class="w-full border p-2 mb-3 rounded"
+  />
+
+  <label class="block mb-1">Jumlah</label>
+  <input
+    name="quantity"
+    type="number"
+    min="1"
+    value="1"
+    required
+    class="w-full border p-2 mb-3 rounded"
+  />
+
+  <label class="block mb-1">Keterangan / Catatan</label>
+  <textarea
+    name="notes"
+    class="w-full border p-2 mb-3 rounded"
+    rows="3"
+  ></textarea>
+
+  <label class="block mb-1">Upload Bukti Pembayaran (gambar)</label>
+  <input
+    name="payment_proof"
+    type="file"
+    accept="image/*"
+    required
+    class="w-full mb-4"
+  />
+
+  <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded">
+    Kirim Pemesanan
+  </button>
+</form>
+{% endblock %}

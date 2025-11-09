@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+<h2 class="text-2xl font-semibold mb-4 text-blue-700">Katalog Produk</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  {% for p in products %}
+  <div class="bg-white rounded shadow p-4 text-center">
+    <img
+      src="https://res.cloudinary.com/demo/image/upload/sample.jpg"
+      alt="{{ p.name }}"
+      class="mx-auto w-40 h-40 object-cover mb-3 rounded"
+    />
+    <h3 class="font-semibold">{{ p.name }}</h3>
+    <p class="text-blue-600 font-bold mb-3">
+      Rp {{ '{:,.0f}'.format(p.price) }}
+    </p>
+    <a
+      href="{{ url_for('order') }}?product={{ p.name }}&price={{ p.price }}"
+      class="bg-blue-600 text-white px-4 py-2 rounded"
+      >Pesan</a
+    >
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

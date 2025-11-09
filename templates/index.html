@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CV. Sejahtera</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <h1>CV. Sejahtera</h1>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Beranda</a></li>
+          <li><a href="{{ url_for('order') }}">Pemesanan</a></li>
+        </ul>
+      </div>
+    </header>
 
+    <section class="hero">
+      <h2>Pengadaan Barang Elektronik & Sekolah</h2>
+      <p>Kami melayani pengadaan untuk seluruh sekolah di Indonesia.</p>
+      <a href="{{ url_for('order') }}" class="btn">Pesan Sekarang</a>
+    </section>
+
+    <section class="products">
+      <div class="product-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2296/2296317.png"
+          alt="Laptop"
+        />
+        <h3>Laptop</h3>
+        <p>Pengadaan laptop berkualitas untuk kebutuhan sekolah.</p>
+      </div>
+
+      <div class="product-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3004/3004565.png"
+          alt="Kursi"
+        />
+        <h3>Kursi Sekolah</h3>
+        <p>Kursi ergonomis untuk siswa dan guru.</p>
+      </div>
+
+      <div class="product-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/4727/4727225.png"
+          alt="Proyektor"
+        />
+        <h3>Proyektor</h3>
+        <p>Proyektor berkualitas tinggi untuk pembelajaran.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>CV. Sejahtera | Jl. Diponegoro 22, Surabaya | Telp: 082140717178</p>
+    </footer>
+  </body>
+</html>

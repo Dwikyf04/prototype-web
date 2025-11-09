@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block content %}
+<div class="flex justify-between items-center mb-6">
+  <h2 class="text-2xl font-semibold text-blue-700">Dashboard Admin</h2>
+  <a href="{{ url_for('logout') }}" class="text-sm text-red-600">Logout</a>
+</div>
+
+<div class="overflow-x-auto bg-white p-4 rounded shadow">
+  <table class="w-full table-auto">
+    <thead class="bg-blue-600 text-white">
+      <tr>
+        <th class="p-2">ID</th>
+        <th class="p-2">Sekolah</th>
+        <th class="p-2">Produk</th>
+        <th class="p-2">Qty</th>
+        <th class="p-2">Total</th>
+        <th class="p-2">Bukti</th>
+        <th class="p-2">PDF</th>
+        <th class="p-2">Waktu</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for o in orders %}
+      <tr class="border-b">
+        <td class="p-2 text-center">{{ o.id }}</td>
+        <td class="p-2">{{ o.school_name }}</td>
+        <td class="p-2">{{ o.product }}</td>
+        <td class="p-2 text-center">{{ o.quantity }}</td>
+        <td class="p-2 text-right">
+          {{ '{:,.0f}'.format(o.total_price or 0) }}
+        </td>
+        <td class="p-2 text-center">
+          {% if o.payment_proof_url %}
+          <a
+            href="{{ o.payment_proof_url }}"
+            target="_blank"
+            class="text-blue-600 underline"
+            >Lihat</a
+          >
+          {% else %} - {% endif %}
+        </td>
+        <td class="p-2 text-center">
+          <a
+            href="{{ url_for('download_pdf', order_id=o.id) }}"
+            class="text-green-600 underline"
+            >Unduh</a
+          >
+        </td>
+        <td class="p-2">{{ o.created_at.strftime('%d-%m-%Y %H:%M') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
